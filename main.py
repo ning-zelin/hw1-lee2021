@@ -20,8 +20,9 @@ class COVID19DATA(Dataset):
             data = np.array(data[1:], dtype = np.float32)
             data = data[:, 1:]
             data = torch.FloatTensor(data)
-            data[:, 40: -1] = (data[:, 40:-1] - data[:, 40:-1].mean(dim = 0, keepdim = True)) / \
-                           (data[:, 40:-1].max(0, keepdim = True)[0] - data[:, 40: -1].min(0, keepdim = True)[0])
+#             data[:, 40: -1] = (data[:, 40:-1] - data[:, 40:-1].mean(dim = 0, keepdim = True)) / \
+#                            (data[:, 40:-1].max(0, keepdim = True)[0] - data[:, 40: -1].min(0, keepdim = True)[0])
+# wrong place and wrong moehod
         if mode == 'test':
             self.data = data
 
@@ -42,7 +43,7 @@ class COVID19DATA(Dataset):
             return self.data[idx], self.target[idx]
         else:
             return self.data[idx]
-
+# normolization here
     def __len__(self):
         return len(self.data)
 
